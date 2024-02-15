@@ -23,8 +23,12 @@ def task(sid):
 
 @sio.event
 def connect(sid, environ):
+    username = environ.get('HTTP_X_USERNAME')
+    if not username:
+        return False
     # sid is the client id which is connected
     # environ is header containing info
+
     global total_client
     global a_groub
     global b_group
@@ -34,11 +38,11 @@ def connect(sid, environ):
     if random.random()>0.5:
         sio.enter_room(sid, 'a')
         a_groub += 1
-        sio.emit('group_info', f'You are in group A along with {a_groub} members', to='a')
+        sio.emit('group_info', f'{username} you are in group A along with {a_groub} members', to='a')
     else:
         sio.enter_room(sid, 'b')
         b_group += 1
-        sio.emit('group_info', f'You are in group B along with {b_group} members', to='b')
+        sio.emit('group_info', f'{username}  you are in group B along with {b_group} members', to='b')
 
 
 @sio.event

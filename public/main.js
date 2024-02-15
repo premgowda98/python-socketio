@@ -1,4 +1,14 @@
-const sio = io();
+const sio = io({
+    transportOptions : {
+        polling: {
+            extraHeaders: {
+                'X-Username': window.location.hash.substring(1)
+                }
+            }
+        }
+    }
+);
+
 const emit_buttton = document.getElementById('emit_buttton')
 
 sio.on('connect', ()=>{
