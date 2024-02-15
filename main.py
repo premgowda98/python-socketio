@@ -17,6 +17,13 @@ def connect(sid, environ):
 def disconnect(sid):
     print('Disconnected', sid)
 
+@sio.event
+def from_client(sid, data):
+    print(sid, data)
+    sio.emit('from_server', {'message': 'from server'}, to=sid)
+    print('emitted')
+
+
 if __name__ == '__main__':
     eventlet.wsgi.server(eventlet.listen(('', 5000)), app)
 
