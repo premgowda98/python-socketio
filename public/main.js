@@ -18,7 +18,11 @@ sio.on('disconnect', ()=>{
     console.log('disconnected')
 })
 
-sio.on('from_basckground', (data)=>{
-    console.log('This is from background task')
+sio.on('from_basckground', (data, cb)=>{
     console.log(data)
+    cb(`client response for server response, this is what you sent ${JSON.stringify(data)}`)
+})
+
+sio.on('client_count', (data)=>{
+    console.log(`Total Connected Members ${data}`)
 })
