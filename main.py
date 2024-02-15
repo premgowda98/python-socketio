@@ -20,8 +20,10 @@ def disconnect(sid):
 @sio.event
 def from_client(sid, data):
     print(sid, data)
-    sio.emit('from_server', {'message': 'from server'}, to=sid)
-    print('emitted')
+    # sio.emit('from_server', {'message': 'from server'}, to=sid)
+    # print('emitted')
+
+    return 'from server'
 
 
 if __name__ == '__main__':
