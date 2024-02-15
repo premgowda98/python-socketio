@@ -26,3 +26,7 @@ sio.on('from_basckground', (data, cb)=>{
 sio.on('client_count', (data)=>{
     console.log(`Total Connected Members ${data}`)
 })
+
+sio.on('group_info', (data)=>{
+    console.log(`${data}`)
+})
